@@ -1,0 +1,187 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INTL Trails</title>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+  
+  <script src="https://unpkg.com/h264-mp4-encoder/embuild/dist/h264-mp4-encoder.web.js"></script>
+  <!-- <script src="libraries/p5.js"></script> -->
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="sketch_trail.js" type="text/javascript"></script>
+  <script src="texture.js" type="text/javascript"></script>
+  <script src="animators.js" type="text/javascript"></script>
+  <script src="update.js" type="text/javascript"></script>
+
+  <script src="imageTrailer.js" type="text/javascript"></script>
+  <script src="headTrailer.js" type="text/javascript"></script>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="widget">
+    <div id="generatorInput">
+      <div class="titleh2">
+        <h2>INTL Trails</h2>
+      </div>
+
+      <button type="button" class="collapsible"><h1>CANVAS</h1></button>
+      <div class="content">
+        <div class="coupling3">
+          <div class="couplingEntry">
+            <input type="radio" id="window" name="saveSize" value=0 onclick="sizeSaveChange(this.value)" checked>
+            <label for="window">Window Size</label>
+          </div>
+          <div class="couplingEntry">
+            <input type="radio" id="vert" name="saveSize" value=1 onclick="sizeSaveChange(this.value)">
+            <label for="vert">Vertical, 9:16</label>
+          </div>
+          <div class="couplingEntry">
+            <input type="radio" id="squa" name="saveSize" value=2 onclick="sizeSaveChange(this.value)">
+            <label for="squa">Square, 1:1</label>
+          </div>
+        </div>
+      </div>
+      
+      <button type="button" class="collapsible"><h1>TRAILS</h1></button>
+      <div class="content">
+        <div class="coupling1">
+          <div class="couplingEntry2">
+            <input type="radio" id="image" name="trailMode" value=0 onclick="setTrailMode(this.value)" checked>
+            <label for="image">Image</label>
+          </div>
+          <div class="couplingEntry2">
+            <input type="radio" id="type" name="trailMode" value=1 onclick="setTrailMode(this.value)">
+            <label for="type">Headline</label>
+          </div>
+        </div>
+
+        <div id="imageTrailSettings">
+          <div id="studioDropSelect">
+            <select class="dropSelect" name="studioSelect" onchange="setStudio(this.value)">
+              <option value="0">MOUTHWASH</option>
+              <option value="1">OSMO</option>
+              <option value="2">KIEL DANGER</option>
+
+            </select>
+          </div>
+          <div class="coupling1" id="imageAverage">
+            <div class="coupling_label"><h3>Img Size</h3></div>
+            <input type="range" min="0" max="100" value="33" id="imageAvgSlicer" oninput="setImageAvg(this.value)">
+          </div>
+          <div class="coupling1" id="imageVariation">
+            <div class="coupling_label"><h3>Variation</h3></div>
+            <input type="range" min="0" max="100" value="25" id="imageVariSlicer" oninput="setImageVari(this.value)">
+          </div>
+        </div>
+
+        <div id="headlineTrailSettings">
+          <div class="coupling1" id="headlineText">
+            <input type="text" value="MOUTHWASH" id="headlineText" oninput="setHeadline(this.value)">
+          </div>
+          <div class="coupling1" id="headFontSize">
+            <div class="coupling_label"><h3>Type Size</h3></div>
+            <input type="range" min="0" max="100" value="50" id="headFontSize" oninput="setHeadFontSize(this.value)">
+          </div>
+        </div>
+
+        <div class="module">
+          <button type="button" class="runResetButton" onclick="runReset()">Reset</button>
+        </div>
+      </div>
+
+      <button type="button" class="collapsible"><h1>ANIMATION</h1></button>
+      <div class="content">
+        <div class="coupling1" id="delayTwist">
+          <div class="coupling_label"><h3>Delay</h3></div>
+          <input type="range" min="0" max="100" value="25" id="delaySlider" oninput="setDelay(this.value)">
+        </div>
+        <div class="module">
+          <button type="button" class="runAnimateButton" onclick="runAnimation()">Play</button>
+        </div>
+      </div>
+
+      <!-- <button type="button" class="collapsible"><h1>THE TWIST</h1></button>
+      <div class="content">
+        <div class="coupling1" id="radiusTwist">
+          <div class="coupling_label"><h3>RADIUS</h3></div>
+          <input type="range" min="0" max="100" value="25" id="radiusSlider" oninput="setRadius(this.value)">
+        </div>
+        <div class="coupling1" id="slopeTwist">
+          <div class="coupling_label"><h3>SLOPE</h3></div>
+          <input type="range" min="0" max="100" value="15" id="slopeSlider" oninput="setSlope(this.value)">
+        </div>
+        <div class="coupling1" id="stripTwist">
+          <div class="coupling_label"><h3>STRIP</h3></div>
+          <input type="range" min="0" max="100" value="30" id="stripSlider" oninput="setStrip(this.value)">
+        </div>
+        <div class="coupling1" id="rotXcamera">
+          <div class="coupling_label"><h3>ROTATE X</h3></div>
+          <input type="range" min="0" max="100" value="50" id="rotXslider" oninput="setRotX(this.value)">
+        </div>
+        <div class="coupling1" id="rotZcamera">
+          <div class="coupling_label"><h3>ROTATE Z</h3></div>
+          <input type="range" min="0" max="100" value="50" id="rotZslider" oninput="setRotZ(this.value)">
+        </div>
+        <div class="coupling1" id="rotYcamera">
+          <div class="coupling_label"><h3>ROTATE Y</h3></div>
+          <input type="range" min="0" max="100" value="50" id="rotYslider" oninput="setRotY(this.value)">
+        </div>
+      </div> -->
+
+      <button type="button" class="collapsible"><h1>SAVE</h1></button>
+      <div class="content">
+        <div class="module">
+          <button type="button" class="saveImageButton" onclick="runSaveImage()">SAVE IMAGE</button>
+        </div>
+        <div class="module">
+          <button type="button" class="saveButton" onclick="runSave()">SAVE LOOP</button>
+        </div>
+        <div id="recStatus">
+          <p>RECORDING IN PROCESS <br>(preview not accurate)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label class="switch">
+      <input type="checkbox" checked oninput="hideWidget()">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <script>
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
+  </script>
+
+  <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+  
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
