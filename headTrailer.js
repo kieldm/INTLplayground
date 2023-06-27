@@ -1,8 +1,9 @@
 class HeadTrailer { 
-  constructor(x, y, index){
+  constructor(x, y, index, deepIndex){
     this.x = x;
     this.y = y;
     this.index = index;
+    this.deepIndex = deepIndex;
 
     this.animMode = int(random(3));
 
@@ -13,21 +14,29 @@ class HeadTrailer {
     this.animScale = 1;
     this.animScaleMax = random(0.5);
 
-    this.animWindow = 60;
+    this.animWindow = coreAnimWindow;
     this.visibleOn = true;
     this.ticker = 0;
 
-    this.letter = head.charAt((this.index)%(head.length));
+    this.letter = head.charAt(this.index%head.length);
+
+    this.thisSize = headFontSize;
+
+    this.mode = 0;
   }
 
   run(){
-    this.update();
+    if(this.mode == 0){
+      this.growUpdate();
+    } else if(this.mode == 1){
+      this.shrinkUpdate();
+    }
     if(this.visibleOn){
       this.display();
     }
   }
 
-  update(){
+  growUpdate(){
     this.ticker ++;
 
     if(this.ticker <= 0){
@@ -55,10 +64,42 @@ class HeadTrailer {
     }
   }
 
+  shrinkUpdate(){
+    this.ticker ++;
+
+    if(this.ticker <= 0){
+      this.visibleOn = true;
+    } else if(this.ticker < this.animWindow){
+      this.visibleOn = true;
+      var tk0 = map(this.ticker, 0, this.animWindow, 0, 1);
+
+      if(this.animMode == 0){
+        this.animY = map(easeInExpo(tk0), 0, 1, 0, this.animYmax);
+      } else if(this.animMode == 1){
+        this.animShear = map(easeInExpo(tk0), 0, 1, 0, this.animShearMax);
+      } else if(this.animMode == 2){
+        this.animScale = map(easeInExpo(tk0), 0, 1, 1, this.animScaleMax);
+      }
+    } else {
+      this.visibleOn = false;
+      if(this.animMode == 0){
+        this.animY = this.animYmax;
+      } else if(this.animMode == 1){
+        this.animShear = this.animShearMax;
+      } else if(this.animMode == 2){
+        this.animScale = this.animScaleMax;
+      }
+      this.detectFinish();
+    }
+  }
+
   display(){
     textFont(headFont);
-    textSize(headFontSize);
+    textSize(this.thisSize);
     textAlign(CENTER);
+
+    fill(foreColor);
+    noStroke();
 
     push();
       translate(this.x, this.y);
@@ -67,9 +108,7 @@ class HeadTrailer {
       shearX(this.animShear);
       scale(this.animScale);
 
-      fill(colorA[0]);
-      noStroke();
-      text(this.letter, 0, headFontSize * 0.35);
+      text(this.letter, 0, this.thisSize * 0.35);
       // text("X", 0, 0);
 
     /////// DEBUG
@@ -77,5 +116,13 @@ class HeadTrailer {
       // fill(colorA[0]);
       // ellipse(0, 0, 5, 5);
     pop();
+  }
+
+  detectFinish(){
+    if(headTrailers.length > imageTrailers.length){
+      if(this.deepIndex == headTrailers.length - 1){
+        fullAnimComplete = true;
+      }
+    }
   }
 }

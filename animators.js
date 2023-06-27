@@ -88,7 +88,15 @@ function easeOutExpo(ticker) {
 function easeInExpo(ticker) {
   return ticker === 0 ? 0 : pow(2, 10 * ticker - 10);
 }
- 
+
+function easeInOutExpo(ticker) {
+  return ticker === 0
+  ? 0
+  : ticker === 1
+  ? 1
+  : ticker < 0.5 ? Math.pow(2, 20 * ticker - 10) / 2
+  : (2 - Math.pow(2, -20 * ticker + 10)) / 2;
+}
 
 function easeOutBack(ticker) {
   const c1 = 1.70158;

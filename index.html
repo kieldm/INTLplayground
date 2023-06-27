@@ -37,15 +37,15 @@
       <div class="content">
         <div class="coupling3">
           <div class="couplingEntry">
-            <input type="radio" id="window" name="saveSize" value=0 onclick="sizeSaveChange(this.value)" checked>
+            <input type="radio" id="window" name="saveSize" value=0 onclick="setSaveSize(this.value)" checked>
             <label for="window">Window Size</label>
           </div>
           <div class="couplingEntry">
-            <input type="radio" id="vert" name="saveSize" value=1 onclick="sizeSaveChange(this.value)">
+            <input type="radio" id="vert" name="saveSize" value=1 onclick="setSaveSize(this.value)">
             <label for="vert">Vertical, 9:16</label>
           </div>
           <div class="couplingEntry">
-            <input type="radio" id="squa" name="saveSize" value=2 onclick="sizeSaveChange(this.value)">
+            <input type="radio" id="squa" name="saveSize" value=2 onclick="setSaveSize(this.value)">
             <label for="squa">Square, 1:1</label>
           </div>
         </div>
@@ -65,14 +65,12 @@
         </div>
 
         <div id="imageTrailSettings">
-          <div id="studioDropSelect">
-            <select class="dropSelect" name="studioSelect" onchange="setStudio(this.value)">
-              <option value="0">MOUTHWASH</option>
-              <option value="1">OSMO</option>
-              <option value="2">KIEL DANGER</option>
-
-            </select>
+          <div class="module">
+            <div class="coupling_label"><h4>Images</h4></div>
+            <input type="file" id="imageTrailUpload" class="fileInput" name="imageTrail" accept="image/png, image/jpeg, image/gif" oninput="uploadImageTrail()" multiple="multiple">
+            <span class="uploadSpan" id="uploadedTrailImage"></span>
           </div>
+
           <div class="coupling1" id="imageAverage">
             <div class="coupling_label"><h3>Img Size</h3></div>
             <input type="range" min="0" max="100" value="33" id="imageAvgSlicer" oninput="setImageAvg(this.value)">
@@ -81,18 +79,33 @@
             <div class="coupling_label"><h3>Variation</h3></div>
             <input type="range" min="0" max="100" value="25" id="imageVariSlicer" oninput="setImageVari(this.value)">
           </div>
+
+          <div class="coupling1b">
+            <div class="couplingEntry1">
+              <input type="radio" id="stackUp" name="stackMode" value=0 onclick="setStackMode(this.value)" checked>
+              <label for="stackUp">Stack Up</label>
+            </div>
+            <div class="couplingEntry1">
+              <input type="radio" id="stackDown" name="stackMode" value=1 onclick="setStackMode(this.value)">
+              <label for="stackDown">Stack Down</label>
+            </div>
+          </div>
         </div>
 
         <div id="headlineTrailSettings">
-          <div class="coupling1" id="headlineText">
-            <input type="text" value="MOUTHWASH" id="headlineText" oninput="setHeadline(this.value)">
+          <div class="module">
+            <div class="coupling_label"><h4>Text</h4></div>
+            <input type="text" value="INTL 2023" id="headlineText" oninput="setHeadline(this.value)">
+          </div>
+          <div class="coupling1" id="headlineColor">
+            <div class="coupling_label"><h3>Type Color</h3></div>
+            <input type="color" id="foreColor" name="foreColor" value="#0000ff" oninput="setForeColor(this.value)">
           </div>
           <div class="coupling1" id="headFontSize">
             <div class="coupling_label"><h3>Type Size</h3></div>
             <input type="range" min="0" max="100" value="50" id="headFontSize" oninput="setHeadFontSize(this.value)">
           </div>
         </div>
-
         <div class="module">
           <button type="button" class="runResetButton" onclick="runReset()">Reset</button>
         </div>
@@ -104,46 +117,53 @@
           <div class="coupling_label"><h3>Delay</h3></div>
           <input type="range" min="0" max="100" value="25" id="delaySlider" oninput="setDelay(this.value)">
         </div>
+        <div class="coupling1" id="delayTwist">
+          <div class="coupling_label"><h3>Hold</h3><span class="holdSpan" id="holdFinal">2sec</span>
+          </div>
+          <input type="range" min="0" max="100" value="20" id="holdSlider" oninput="setHold(this.value)">
+        </div>
         <div class="module">
           <button type="button" class="runAnimateButton" onclick="runAnimation()">Play</button>
         </div>
       </div>
 
-      <!-- <button type="button" class="collapsible"><h1>THE TWIST</h1></button>
+      <button type="button" class="collapsible"><h1>BACKGROUND</h1></button>
       <div class="content">
-        <div class="coupling1" id="radiusTwist">
-          <div class="coupling_label"><h3>RADIUS</h3></div>
-          <input type="range" min="0" max="100" value="25" id="radiusSlider" oninput="setRadius(this.value)">
+        <div class="coupling1">
+          <div class="couplingEntry2">
+            <input type="radio" id="colorBkgd" name="bkgdMode" value=0 onclick="setBkgdMode(this.value)" checked>
+            <label for="colorBkgd">Color</label>
+          </div>
+          <div class="couplingEntry2">
+            <input type="radio" id="imageBkgd" name="bkgdMode" value=1 onclick="setBkgdMode(this.value)">
+            <label for="imageBkgd">Image</label>
+          </div>
         </div>
-        <div class="coupling1" id="slopeTwist">
-          <div class="coupling_label"><h3>SLOPE</h3></div>
-          <input type="range" min="0" max="100" value="15" id="slopeSlider" oninput="setSlope(this.value)">
-        </div>
-        <div class="coupling1" id="stripTwist">
-          <div class="coupling_label"><h3>STRIP</h3></div>
-          <input type="range" min="0" max="100" value="30" id="stripSlider" oninput="setStrip(this.value)">
-        </div>
-        <div class="coupling1" id="rotXcamera">
-          <div class="coupling_label"><h3>ROTATE X</h3></div>
-          <input type="range" min="0" max="100" value="50" id="rotXslider" oninput="setRotX(this.value)">
-        </div>
-        <div class="coupling1" id="rotZcamera">
-          <div class="coupling_label"><h3>ROTATE Z</h3></div>
-          <input type="range" min="0" max="100" value="50" id="rotZslider" oninput="setRotZ(this.value)">
-        </div>
-        <div class="coupling1" id="rotYcamera">
-          <div class="coupling_label"><h3>ROTATE Y</h3></div>
-          <input type="range" min="0" max="100" value="50" id="rotYslider" oninput="setRotY(this.value)">
-        </div>
-      </div> -->
 
+        <div id="colorBkgdSettings">
+          <div class="coupling1" id="colorBkgd">
+            <div class="coupling_label"><h3>Bkgd Color</h3></div>
+            <input type="color" id="bColor" name="bColor" value="#ffffff" oninput="setBkgdColor(this.value)">
+          </div>
+        </div>
+
+        <div id="imageBkgdSettings">
+          <div class="module">
+            <div class="coupling2">
+              <input type="file" id="bkgdImageUpload" class="fileInput" name="bkgdImage" accept="image/png, image/jpeg, image/gif" oninput="uploadBkgdImage()">
+              <span class="uploadSpan" id="uploadedBkgdImage"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <button type="button" class="collapsible"><h1>SAVE</h1></button>
       <div class="content">
         <div class="module">
           <button type="button" class="saveImageButton" onclick="runSaveImage()">SAVE IMAGE</button>
         </div>
         <div class="module">
-          <button type="button" class="saveButton" onclick="runSave()">SAVE LOOP</button>
+          <button type="button" class="saveButton" onclick="runSaveMotion()">SAVE LOOP</button>
         </div>
         <div id="recStatus">
           <p>RECORDING IN PROCESS <br>(preview not accurate)</p>
