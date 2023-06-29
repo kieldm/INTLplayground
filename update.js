@@ -14,11 +14,11 @@ function runAnimation(){
 
   for(var m = 0; m < imageTrailers.length; m++){
     imageTrailers[m].mode = 0;
-    imageTrailers[m].ticker = -m * animDelay;
+    imageTrailers[m].ticker = -m * animDelay - 3;
   }
   for(var m = 0; m < headTrailers.length; m++){
     headTrailers[m].mode = 0;
-    headTrailers[m].ticker = -m * animDelay;
+    headTrailers[m].ticker = -m * animDelay - 3;
   }
 }
 
@@ -73,6 +73,10 @@ function setForeColor(val){
   foreColor = color(val);
 }
 
+function setBlockColor(val){
+  headBlock = color(val);
+}
+
 function uploadBkgdImage(){
   const selectedFile = document.getElementById('bkgdImageUpload');
   const myImageFile = selectedFile.files[0];
@@ -81,6 +85,8 @@ function uploadBkgdImage(){
 
   document.getElementById('uploadedBkgdImage').innerHTML = selectedFile.files[0].name;
   document.getElementById('uploadedBkgdImage').style.display = "block";
+
+  print("width? " + bkgdImage.width + " & height? " + bkgdImage.height)
 }
 
 function uploadImageTrail(){
@@ -136,6 +142,48 @@ function setHold(val){
   document.getElementById('holdFinal').innerHTML = printHold + "sec";
 }
 
+function toggleHeadlineBlock(){
+  headlineBlock = !headlineBlock;
+
+  if(headlineBlock){
+    document.getElementById('headineBlockColor').style.display = "flex";
+  } else {
+    document.getElementById('headineBlockColor').style.display = "none";
+  }
+}
+
+function toggleImageBreak(){
+  imageBreak = !imageBreak;
+}
+
+function toggleImageRandomize(){
+  imageRandomize = !imageRandomize;
+}
+
+function toggleImageAnimate(){
+  imageAnimate = !imageAnimate;
+}
+
+function toggleHeadAnimAll(){
+  headScaleAnim = !headScaleAnim;
+  headSkewAnim = !headSkewAnim;
+  headVertAnim = !headVertAnim;
+  console.log("TOGGLED! " + headScaleAnim + headSkewAnim + headVertAnim);
+
+}
+
+// function toggleHeadScaleAnim(){
+//   headScaleAnim = !headScaleAnim;
+// }
+
+// function toggleHeadSkewAnim(){
+//   headSkewAnim = !headSkewAnim;
+// }
+
+// function toggleHeadVertAnim(){
+//   headVertAnim = !headVertAnim;
+// }
+
 function setSaveSize(val){
   saveSize = val;
 
@@ -157,7 +205,24 @@ function setSaveSize(val){
       resizeCanvas(windowWidth, windowWidth);
     }
     previewFactor = 1080/width;
-  }
+
+  } else if(saveSize == 3){
+    if(windowWidth > windowHeight * 800/1126){
+      resizeCanvas(windowHeight * 800/1126, windowHeight);
+    } else {
+      resizeCanvas(windowWidth, windowWidth * 1126/800);
+    }
+    previewFactor = 800/width;
+
+  }  else if(saveSize == 4){
+    if(windowWidth > windowHeight * 1080/720){
+      resizeCanvas(windowHeight * 1080/720, windowHeight);
+    } else {
+      resizeCanvas(windowWidth, windowWidth * 720/1080);
+    }
+    previewFactor = 1080/width;
+
+  } 
 }
 
 function setRenderSize(){
@@ -167,6 +232,10 @@ function setRenderSize(){
     resizeCanvas(1080, 1920);
   } else if(saveSize == 2){
     resizeCanvas(1080, 1080);
+  } else if(saveSize == 3){
+    resizeCanvas(800, 1126);
+  } else if(saveSize == 4){
+    resizeCanvas(1080, 720);
   }
 }
 
@@ -198,7 +267,7 @@ function runSaveMotion(){
     encoder.initialize();
   })
 
-  numFrames = round(((imageTrailers.length * animDelay) + (headTrailers.length * animDelay))/2) + coreAnimWindow + holdDelay;
+  numFrames = 3 + round(((imageTrailers.length * animDelay) + (headTrailers.length * animDelay))/2) + coreAnimWindow + holdDelay;
 
   if(headTrailers.length > imageTrailers.length){
     numFrames += (headTrailers.length * animDelay) + coreAnimWindow - 2 * animDelay;

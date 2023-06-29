@@ -1,4 +1,4 @@
-var bkgdColor, foreColor;
+var bkgdColor, foreColor, headBlock;
 var colorA = [];
 
 var trailOn = false;
@@ -33,6 +33,15 @@ var overlapFactor = 0.6;
 var imageAvg = 100;
 var imageVar = imageAvg * 0.5;
 
+var imageAnimate = false;
+var imageBreak = false;
+var imageRandomize = false;
+
+var headScaleAnim = false;
+var headSkewAnim = false;
+var headVertAnim = false;
+var headlineBlock = true;
+
 var animDelay = 5;
 var holdDelay = 60;
 
@@ -54,6 +63,7 @@ var frate = 30;
 var saveSize = 0;
 var widgetOn = true;
 let recMessageOn = false;
+// var canvas;
 
 function preload(){
   for(var m = 0; m < pgImageHoldCount; m++){
@@ -71,7 +81,9 @@ function setup(){
 
   bkgdColor = color('#ffffff');
   foreColor = color('#0000ff');  
+  headBlock = color('#e2e2e2');  
 
+  rectMode(CENTER);
   imageMode(CENTER);
 }
 
@@ -106,9 +118,10 @@ function draw(){
     {
     imageTrailers[imageTrailers.length] = new ImageTrailer(mouseX, mouseY, imageTicker, imageTrailers.length);
     imageTicker ++;
-    // if(imageTrailers.length%pgImage.length == 0){
-    if(imageTicker%pgImage.length == 0){
-        trailOn = false;
+
+    ///////// NATURAL BREAK
+    if(imageBreak && imageTicker%pgImage.length == 0){
+      trailOn = false;
     }
   }
 

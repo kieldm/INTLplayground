@@ -160,6 +160,22 @@ button{
 input[type=radio]{
   margin-left:0
 }
+input[type=checkbox]{
+  margin:0
+}
+.coupling1c {
+  margin:5px;
+  margin-bottom:0;
+  display:flex;
+  flex-direction:row;
+}
+.coupling1c label{
+  font-family:'IBM Plex Mono',monospace;
+  margin-left:5px;
+
+  font-size:11px;
+  font-weight:500;
+}
 .coupling1{
   display:flex;
   flex-direction:row;
@@ -231,8 +247,8 @@ div.module{
 .switch{
   position:absolute;
   bottom:0;
-  left:50%;
-  transform:translate(-50%,0);
+  left:0;
+  transform:translate(0,0);
   display:inline-block;
   width:38px;
   height:20px
@@ -366,6 +382,9 @@ input.fileInput {
   height:5px;
 }
 
+#headineBlockColor{
+  display:flex;
+}
 #uploadedBkgdImage {
   display:none;
 }

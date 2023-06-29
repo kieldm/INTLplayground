@@ -98,17 +98,22 @@ class HeadTrailer {
     textSize(this.thisSize);
     textAlign(CENTER);
 
-    fill(foreColor);
-    noStroke();
-
     push();
       translate(this.x, this.y);
 
-      translate(0, this.animY);
-      shearX(this.animShear);
-      scale(this.animScale);
+      if(headVertAnim){ translate(0, this.animY); }
+      if(headSkewAnim){ shearX(this.animShear); }
+      if(headScaleAnim){ scale(this.animScale); }
 
+      if(headlineBlock && this.letter != " "){
+        fill(headBlock);
+        noStroke();
+        rect(0, 0, this.thisSize * 0.75, this.thisSize);
+      }
+
+      fill(foreColor);
       text(this.letter, 0, this.thisSize * 0.35);
+
       // text("X", 0, 0);
 
     /////// DEBUG

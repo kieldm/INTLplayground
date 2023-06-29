@@ -5,8 +5,12 @@ class ImageTrailer {
     this.index = index;
     this.deepIndex = deepIndex;
 
-    // this.rImage = pgImage[int(random(pgImage.length))];
-    this.rImage = pgImage[(this.index%pgImage.length)];
+    if(imageRandomize){
+      this.rImage = pgImage[int(random(pgImage.length))];
+    } else {
+      this.rImage = pgImage[(this.index%pgImage.length)];
+    }
+
     this.d = (this.rImage.width + this.rImage.height)/2;
     this.dwFactor = this.rImage.width/this.d;
     this.dhFactor = this.rImage.height/this.d;
@@ -16,9 +20,14 @@ class ImageTrailer {
     this.h = this.r * this.dhFactor;
     this.rMax = imageAvg + random(-imageVar, imageVar);
 
+    this.finalW = this.dwFactor * this.rMax;
+    this.finalH = this.dhFactor * this.rMax;
+
     this.animWindow = coreAnimWindow;
     this.visibleOn = true;
     this.ticker = 0;
+
+    this.animOpacity = 255;
 
     this.mode = 0;
   }
@@ -42,7 +51,7 @@ class ImageTrailer {
     } else if(this.ticker < this.animWindow){
       this.visibleOn = true;
       var tk0 = map(this.ticker, 0, this.animWindow, 0, 1);
-      this.r = map(easeOutQuint(tk0), 0, 1, 0, this.rMax);
+      this.r = map(easeOutQuint(tk0), 0, 1, 1, this.rMax);
     } else {
       this.r = this.rMax;
     }
@@ -58,7 +67,7 @@ class ImageTrailer {
       this.visibleOn = true;
     } else if(this.ticker < this.animWindow){
       var tk0 = map(this.ticker, 0, this.animWindow, 0, 1);
-      this.r = map(easeInExpo(tk0), 0, 1, this.rMax, 0);
+      this.r = map(easeInExpo(tk0), 0, 1, this.rMax, 1);
     } else {
       this.r = 0;
       this.visibleOn = false;
@@ -73,7 +82,14 @@ class ImageTrailer {
     push();
       translate(this.x, this.y);
 
-      image(this.rImage, 0, 0, this.w, this.h);
+
+      // tint(255, 255);
+
+      if(imageAnimate){
+        image(this.rImage, 0, 0, this.w, this.h);
+      } else {
+        image(this.rImage, 0, 0, this.finalW, this.finalH);
+      }
 
     ///////// DEBUG
     //   noStroke();
