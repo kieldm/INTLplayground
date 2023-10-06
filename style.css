@@ -1,3 +1,12 @@
+@font-face {
+  font-family:myHaasReg;
+  src:url(resources/NHaasGroteskTXPro-55Rg.otf);
+}
+@font-face {
+  font-family:myHaasLit;
+  src:url(resources/NHaasGroteskDSPro-45Lt.otf);
+}
+
 body{
   background-image:url("resources/transparency.png");
   background-repeat: repeat;
@@ -23,22 +32,32 @@ canvas{
   z-index:-1
 }
 .collapsible{
-  background-image:linear-gradient(180deg,#00f,#00f,#000035,#f1f1f1);
+  /* background-image:linear-gradient(180deg,#00f,#00f,#000035,#f1f1f1); */
+  background:#0000ff;
   cursor:pointer;
-  padding-top:5px;
+  padding:5px;
   width:200px;
   text-align:left;
   font-size:12px;
-  border:0
+  border:0;
+  border-bottom: 2px solid #ffffff;
+  height:45px;
 }
+
+.collapsible img{
+  width:190px;
+}
+
 .active,.collapsible:hover{
   background-color:#00f
 }
 .content{
   display:none;
   overflow:hidden;
-  background-color:#f1f1f1;
-  padding-bottom:5px
+  padding-bottom:5px;
+  width:200px;
+  border-bottom: 2px solid #ffffff;
+  
 }
 .coupling_label2{
   width:60px;
@@ -47,16 +66,15 @@ canvas{
 }
 .collapsible:after{
   margin-top:-25px;
-  content:'\2193';
   font-size:13px;
   color:#fff;
   float:right
 }
-.active:after{
-  content:"\2190"
+button.collapsible.active{
+  border:0;
 }
 input[type=text]{
-  width:190px;
+  width:180px;
   height:27px;
   margin-left:0px;
 }
@@ -74,42 +92,43 @@ select {
   flex-direction:column
 }
 h1{
-  font-family:'IBM Plex Mono',monospace;
-  font-weight:500;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasReg, Helvetica, sans-serif;
   color:#fff;
-  font-size:14px;
-  margin-bottom:5px;
-  margin-top:0
+  font-size:18px;
+  margin:0;
+  margin-left:5px;
 }
 h2{
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasReg, Helvetica, sans-serif;
   font-size:18px;
-  font-weight:500;
   text-align:center;
   color:#fff;
   margin:5px
 }
 h3{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
-  font-weight:500;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
+  font-size:11px;
   margin:0
 }
 h4{
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
   text-decoration: underline;
-  font-size:12px;
-  font-weight:500;
+  font-size:16px;
   text-align:left;
-  color:#000;
+  color:#fff;
   margin:0;
+  margin-top:10px;
   padding-bottom:5px;
 }
 h5{
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
   font-style:italic;
-  font-size:12px;
-  font-weight:300;
+  font-size:14px;
   text-align:left;
   color:#000;
   margin:0;
@@ -117,11 +136,12 @@ h5{
   margin-bottom:5px
 }
 .titleh2{
-  background-color:#00f
+  background-color:#00f;
 }
+
 .module p{
-  font-family:'IBM Plex Mono',monospace;
-  font-weight:200;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasReg, Helvetica, sans-serif;
   font-style:italic;
   color:#00f;
   font-size:10px;
@@ -147,15 +167,18 @@ input[type=color]::-webkit-color-swatch{
   width:130px
 }
 p{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
-  font-weight:500;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
+  font-size:11px;
   color:#fff;
-  text-align:center;
-  margin-top:2px
+  text-align:left;
+  padding-top: 10px;
+  margin:10px;
+  margin-top:0;
+  border-top: 0.5px solid #ffffff;
 }
 button{
-  width:190px
+  width:180px
 }
 input[type=radio]{
   margin-left:0
@@ -166,21 +189,19 @@ input[type=checkbox]{
 .coupling1c {
   margin:5px;
   margin-bottom:0;
+  margin-left:0;
   display:flex;
   flex-direction:row;
 }
 .coupling1c label{
-  font-family:'IBM Plex Mono',monospace;
-  margin-left:5px;
-
-  font-size:11px;
-  font-weight:500;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
+  font-size:12px;
 }
 .coupling1{
   display:flex;
   flex-direction:row;
-  padding-top:8px;
-  margin-left:5px
+  margin-top:5px;
 }
 .coupling1b{
   display:flex;
@@ -193,9 +214,9 @@ input[type=checkbox]{
   width:90px;
 }
 .couplingEntry1 label{
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
   font-size:11px;
-  font-weight:500;
 }
 
 .couplingEntry2{
@@ -212,16 +233,24 @@ input[type=checkbox]{
   flex-direction:column;
   padding-bottom:10px
 }
-.coupling3{
+.couplingSet{
   display:flex;
   flex-direction:column;
-  padding-left:5px
+  font-family: myHaasLit, Helvetica, sans-serif;
+  font-size:11px;
+  color:#fff;
+  text-align:left;
+  padding-top: 10px;
+  margin:10px;
+  margin-top:0;
+  border-top: 0.5px solid #ffffff;
 }
 label{
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
   font-size:14px;
-  font-weight:500;
-  margin-top:2px
+  margin-top:2px;
+  margin-left:5px;
 }
 .coupling_label {
   display:flex;
@@ -232,7 +261,6 @@ div.coupling_label{
   width:60px
 }
 div.module{
-  margin:5px
 }
 #recStatus{
   display:none;
@@ -298,9 +326,9 @@ input:checked+.slider:before{
   border-radius:50%
 }
 .popup{
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasReg, Helvetica, sans-serif;
   font-size:10px;
-  font-weight:500;
   margin-top:-5px;
   padding-bottom:5px;
   color:#fff;
@@ -332,18 +360,18 @@ input:checked+.slider:before{
 }
 
 input.fileInput {
-  width:190px;
+  width:180px;
 }
 .fileInput::-webkit-file-upload-button {
   visibility: hidden;
 }
 .fileInput::before {
-  width:188px;
+  width:178px;
   height:20px;
   text-align:center;
   content: 'UPLOAD IMAGE...';
   display: inline-block;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   border-radius: 2px;
   padding-top:5px;
   margin:0;
@@ -359,9 +387,9 @@ input.fileInput {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 .uploadSpan {
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasReg, Helvetica, sans-serif;
   font-size:12px;
-  font-weight:500;
   text-align:center;
   color:#000;
   margin:0;
@@ -371,11 +399,11 @@ input.fileInput {
 }
 
 .holdSpan {
-  font-family:'IBM Plex Mono',monospace;
+  /* font-family:'IBM Plex Mono',monospace; */
+  font-family: myHaasLit, Helvetica, sans-serif;
   font-size:10px;
-  font-weight:500;
   text-align:center;
-  color:#000;
+  color:#fff;
   margin:0;
   padding-bottom:5px;
   padding-left:10px;
@@ -392,11 +420,9 @@ input.fileInput {
   display:none;
 }
 #imageTrailSettings {
-  padding-top:5px;
   display:block;
 }
 #headlineTrailSettings {
-  padding-top:5px;
   display:none;
 }
 
@@ -407,4 +433,8 @@ input.fileInput {
 #imageBkgdSettings {
   padding-top:5px;
   display:none;
+}
+
+a {
+  color:white;
 }

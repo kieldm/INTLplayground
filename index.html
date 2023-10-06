@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>INTL Trails</title>
+  <title>INTL Playground</title>
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
@@ -29,13 +29,19 @@
 <body>
   <div id="widget">
     <div id="generatorInput">
-      <div class="titleh2">
-        <h2>INTL Trails</h2>
+      <button type="button" class="collapsible"><img src="resources/INTLplayground_logo1.png"></button>
+      <div class="content">
+        <p>
+          The Playground is a new space for digital tools and creative coding at <a href="https://intl.international/" target="_blank">INTL</a> .
+          <br><br>
+          The first project in the playground is Klee, an interactive drawing tool created
+          by <a href="https://kielm.com/" target="_blank">Kiel Mutschelknaus</a>  with creative direction from <a href="https://warriorsstudio.com/" target="_blank">Warriors Studio</a> .
+        </p>
       </div>
 
-      <button type="button" class="collapsible"><h1>CANVAS</h1></button>
+      <button type="button" class="collapsible"><h1>Canvas</h1></button>
       <div class="content">
-        <div class="coupling3">
+        <div class="couplingSet">
           <div class="couplingEntry">
             <input type="radio" id="window" name="saveSize" value=0 onclick="setSaveSize(this.value)" checked>
             <label for="window">Window Size</label>
@@ -59,9 +65,9 @@
         </div>
       </div>
       
-      <button type="button" class="collapsible"><h1>TRAILS</h1></button>
+      <button type="button" class="collapsible"><h1>Trails</h1></button>
       <div class="content">
-        <div class="coupling1">
+        <div class="couplingSet">
           <div class="couplingEntry2">
             <input type="radio" id="image" name="trailMode" value=0 onclick="setTrailMode(this.value)" checked>
             <label for="image">Image</label>
@@ -70,117 +76,107 @@
             <input type="radio" id="type" name="trailMode" value=1 onclick="setTrailMode(this.value)">
             <label for="type">Headline</label>
           </div>
-        </div>
 
-        <div id="imageTrailSettings">
-          <div class="module">
-            <div class="coupling_label"><h4>Images</h4></div>
-            <input type="file" id="imageTrailUpload" class="fileInput" name="imageTrail" accept="image/png, image/jpeg, image/gif" oninput="uploadImageTrail()" multiple="multiple">
-            <span class="uploadSpan" id="uploadedTrailImage"></span>
-          </div>
-
-          <div class="coupling1" id="imageAverage">
-            <div class="coupling_label"><h3>Img Size</h3></div>
-            <input type="range" min="0" max="100" value="33" id="imageAvgSlicer" oninput="setImageAvg(this.value)">
-          </div>
-          <div class="coupling1" id="imageVariation">
-            <div class="coupling_label"><h3>Variation</h3></div>
-            <input type="range" min="0" max="100" value="25" id="imageVariSlicer" oninput="setImageVari(this.value)">
-          </div>
-
-          <div class="coupling1c">
-            <input type="checkbox" id="imageAnimate" name="imageAnimate" onclick="toggleImageAnimate()">
-            <label for="imageAnimate">Animate Intros</label>
-          </div>
-
-          <div class="coupling1c">
-            <input type="checkbox" id="imageBreak" name="imageBreak" onclick="toggleImageBreak()">
-            <label for="imageBreak">"Natural" Break</label>
-          </div>
-          <div class="coupling1c">
-            <input type="checkbox" id="imageRandomize" name="imageRandomize" onclick="toggleImageRandomize()">
-            <label for="imageRandomize">Randomize Images</label>
-          </div>
-
-          <div class="coupling1b">
-            <div class="couplingEntry1">
-              <input type="radio" id="stackUp" name="stackMode" value=0 onclick="setStackMode(this.value)" checked>
-              <label for="stackUp">Stack Up</label>
+          <div id="imageTrailSettings">
+            <div class="module">
+              <div class="coupling_label"><h4>Images</h4></div>
+              <input type="file" id="imageTrailUpload" class="fileInput" name="imageTrail" accept="image/png, image/jpeg, image/gif" oninput="uploadImageTrail()" multiple="multiple">
+              <span class="uploadSpan" id="uploadedTrailImage"></span>
             </div>
-            <div class="couplingEntry1">
-              <input type="radio" id="stackDown" name="stackMode" value=1 onclick="setStackMode(this.value)">
-              <label for="stackDown">Stack Down</label>
+  
+            <div class="coupling1" id="imageAverage">
+              <div class="coupling_label"><h3>Img Size</h3></div>
+              <input type="range" min="0" max="100" value="33" id="imageAvgSlicer" oninput="setImageAvg(this.value)">
+            </div>
+            <div class="coupling1" id="imageVariation">
+              <div class="coupling_label"><h3>Variation</h3></div>
+              <input type="range" min="0" max="100" value="25" id="imageVariSlicer" oninput="setImageVari(this.value)">
+            </div>
+  
+            <div class="coupling1c">
+              <input type="checkbox" id="imageAnimate" name="imageAnimate" onclick="toggleImageAnimate()">
+              <label for="imageAnimate">Animate Intros</label>
+            </div>
+  
+            <div class="coupling1c">
+              <input type="checkbox" id="imageBreak" name="imageBreak" onclick="toggleImageBreak()">
+              <label for="imageBreak">"Natural" Break</label>
+            </div>
+            <div class="coupling1c">
+              <input type="checkbox" id="imageRandomize" name="imageRandomize" onclick="toggleImageRandomize()">
+              <label for="imageRandomize">Randomize Images</label>
+            </div>
+  
+            <div class="coupling1b">
+              <div class="couplingEntry1">
+                <input type="radio" id="stackUp" name="stackMode" value=0 onclick="setStackMode(this.value)" checked>
+                <label for="stackUp">Stack Up</label>
+              </div>
+              <div class="couplingEntry1">
+                <input type="radio" id="stackDown" name="stackMode" value=1 onclick="setStackMode(this.value)">
+                <label for="stackDown">Stack Down</label>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="headlineTrailSettings">
+          <div id="headlineTrailSettings">
+            <div class="module">
+              <div class="coupling_label"><h4>Text</h4></div>
+              <input type="text" value="INTL 2023" id="headlineText" oninput="setHeadline(this.value)">
+            </div>
+            <div class="coupling1" id="headlineColor">
+              <div class="coupling_label"><h3>Type Color</h3></div>
+              <input type="color" id="foreColor" name="foreColor" value="#0000ff" oninput="setForeColor(this.value)">
+            </div>
+            <div class="coupling1" id="headFontSize">
+              <div class="coupling_label"><h3>Type Size</h3></div>
+              <input type="range" min="0" max="100" value="50" id="headFontSize" oninput="setHeadFontSize(this.value)">
+            </div>
+  
+  
+            <div class="coupling1c">
+              <input type="checkbox" id="headAnimAll" name="headAnimAll" onclick="toggleHeadAnimAll()">
+              <label for="headAnimAll">Animate Intros</label>
+            </div>
+            
+            <div class="coupling1c">
+              <input type="checkbox" id="headlineBlock" name="headlineBlock" onclick="toggleHeadlineBlock()" checked>
+              <label for="headlineBlock">Background Block</label>
+            </div>
+  
+            <div class="coupling1" id="headineBlockColor">
+              <div class="coupling_label"><h3>Block Color</h3></div>
+              <input type="color" id="blockColor" name="blockColor" value="#e2e2e2" oninput="setBlockColor(this.value)">
+            </div>
+          </div>
+
           <div class="module">
-            <div class="coupling_label"><h4>Text</h4></div>
-            <input type="text" value="INTL 2023" id="headlineText" oninput="setHeadline(this.value)">
+            <button type="button" class="runResetButton" onclick="runReset()">Reset</button>
           </div>
-          <div class="coupling1" id="headlineColor">
-            <div class="coupling_label"><h3>Type Color</h3></div>
-            <input type="color" id="foreColor" name="foreColor" value="#0000ff" oninput="setForeColor(this.value)">
-          </div>
-          <div class="coupling1" id="headFontSize">
-            <div class="coupling_label"><h3>Type Size</h3></div>
-            <input type="range" min="0" max="100" value="50" id="headFontSize" oninput="setHeadFontSize(this.value)">
-          </div>
-
-
-          <div class="coupling1c">
-            <input type="checkbox" id="headAnimAll" name="headAnimAll" onclick="toggleHeadAnimAll()">
-            <label for="headAnimAll">Animate Intros</label>
-          </div>
-
-          <!-- <div class="coupling1c">
-            <input type="checkbox" id="scaleAnim" name="scaleAnim" onclick="toggleHeadScaleAnim()">
-            <label for="scaleAnim">Scale Animation</label>
-          </div>
-          <div class="coupling1c">
-            <input type="checkbox" id="headlineBlock" name="headlineBlock" onclick="toggleHeadVertAnim()">
-            <label for="headlineBlock">Vertical Animation</label>
-          </div>
-          <div class="coupling1c">
-            <input type="checkbox" id="headlineBlock" name="headlineBlock" onclick="toggleHeadSkewAnim()">
-            <label for="headlineBlock">Skew Animation</label>
-          </div> -->
-          
-          <div class="coupling1c">
-            <input type="checkbox" id="headlineBlock" name="headlineBlock" onclick="toggleHeadlineBlock()" checked>
-            <label for="headlineBlock">Background Block</label>
-          </div>
-
-          <div class="coupling1" id="headineBlockColor">
-            <div class="coupling_label"><h3>Block Color</h3></div>
-            <input type="color" id="blockColor" name="blockColor" value="#e2e2e2" oninput="setBlockColor(this.value)">
-          </div>
-        </div>
-        <div class="module">
-          <button type="button" class="runResetButton" onclick="runReset()">Reset</button>
         </div>
       </div>
 
-      <button type="button" class="collapsible"><h1>ANIMATION</h1></button>
+      <button type="button" class="collapsible"><h1>Animation</h1></button>
       <div class="content">
-        <div class="coupling1" id="delayTwist">
-          <div class="coupling_label"><h3>Delay</h3></div>
-          <input type="range" min="0" max="100" value="25" id="delaySlider" oninput="setDelay(this.value)">
-        </div>
-        <div class="coupling1" id="delayTwist">
-          <div class="coupling_label"><h3>Hold</h3><span class="holdSpan" id="holdFinal">2sec</span>
+        <div class="couplingSet">
+          <div class="coupling1" id="delayTwist">
+            <div class="coupling_label"><h3>Delay</h3></div>
+            <input type="range" min="0" max="100" value="25" id="delaySlider" oninput="setDelay(this.value)">
           </div>
-          <input type="range" min="0" max="100" value="20" id="holdSlider" oninput="setHold(this.value)">
-        </div>
-        <div class="module">
-          <button type="button" class="runAnimateButton" onclick="runAnimation()">Play</button>
+          <div class="coupling1" id="delayTwist">
+            <div class="coupling_label"><h3>Hold</h3><span class="holdSpan" id="holdFinal">2sec</span>
+            </div>
+            <input type="range" min="0" max="100" value="20" id="holdSlider" oninput="setHold(this.value)">
+          </div>
+          <div class="module">
+            <button type="button" class="runAnimateButton" onclick="runAnimation()">Play</button>
+          </div>
         </div>
       </div>
 
-      <button type="button" class="collapsible"><h1>BACKGROUND</h1></button>
+      <button type="button" class="collapsible"><h1>Background</h1></button>
       <div class="content">
-        <div class="coupling1">
+        <div class="couplingSet">
           <div class="couplingEntry2">
             <input type="radio" id="colorBkgd" name="bkgdMode" value=0 onclick="setBkgdMode(this.value)" checked>
             <label for="colorBkgd">Color</label>
@@ -189,37 +185,44 @@
             <input type="radio" id="imageBkgd" name="bkgdMode" value=1 onclick="setBkgdMode(this.value)">
             <label for="imageBkgd">Image</label>
           </div>
-        </div>
 
-        <div id="colorBkgdSettings">
-          <div class="coupling1" id="colorBkgd">
-            <div class="coupling_label"><h3>Bkgd Color</h3></div>
-            <input type="color" id="bColor" name="bColor" value="#ffffff" oninput="setBkgdColor(this.value)">
-          </div>
-        </div>
-
-        <div id="imageBkgdSettings">
-          <div class="module">
-            <div class="coupling2">
-              <input type="file" id="bkgdImageUpload" class="fileInput" name="bkgdImage" accept="image/png, image/jpeg, image/gif" oninput="uploadBkgdImage()">
-              <span class="uploadSpan" id="uploadedBkgdImage"></span>
+          <div id="colorBkgdSettings">
+            <div class="coupling1" id="colorBkgd">
+              <div class="coupling_label"><h3>Background</h3></div>
+              <input type="color" id="bColor" name="bColor" value="#ffffff" oninput="setBkgdColor(this.value)">
             </div>
+          </div>
+
+          <div id="imageBkgdSettings">
+            <input type="file" id="bkgdImageUpload" class="fileInput" name="bkgdImage" accept="image/png, image/jpeg, image/gif" oninput="uploadBkgdImage()">
+            <span class="uploadSpan" id="uploadedBkgdImage"></span>
           </div>
         </div>
       </div>
       
-      <button type="button" class="collapsible"><h1>SAVE</h1></button>
+      <button type="button" class="collapsible"><h1>Save</h1></button>
       <div class="content">
-        <div class="module">
-          <button type="button" class="saveImageButton" onclick="runSaveImage()">SAVE IMAGE</button>
-        </div>
-        <div class="module">
-          <button type="button" class="saveButton" onclick="runSaveMotion()">SAVE LOOP</button>
-        </div>
-        <div id="recStatus">
-          <p>RECORDING IN PROCESS <br>(preview not accurate)</p>
+        <div class="couplingSet">
+          <div class="module">
+            <button type="button" class="saveImageButton" onclick="runSaveImage()">SAVE IMAGE</button>
+          </div>
+          <div class="module">
+            <button type="button" class="saveButton" onclick="runSaveMotion()">SAVE LOOP</button>
+          </div>
+          <div id="recStatus">
+            <p>RECORDING IN PROCESS <br>(preview not accurate)</p>
+          </div>
         </div>
       </div>
+
+      <button type="button" class="collapsible"><h1>Gallery</h1></button>
+      <div class="content">
+        <p>
+          Creations you make with our interactive drawing tool Klee
+          can be uploaded and enjoyed by everybody in the Playground Gallery.
+          <br><br>
+          Browse the gallery and submit your creations.
+        </p>
     </div>
   </div>
 
