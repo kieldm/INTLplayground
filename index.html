@@ -15,7 +15,6 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script src="sketch_trail.js" type="text/javascript"></script>
-  <script src="texture.js" type="text/javascript"></script>
   <script src="animators.js" type="text/javascript"></script>
   <script src="update.js" type="text/javascript"></script>
 
@@ -24,6 +23,8 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="resources/KLEEfavicon.png">
 </head>
 
 <body>
@@ -74,7 +75,7 @@
           </div>
           <div class="couplingEntry2">
             <input type="radio" id="type" name="trailMode" value=1 onclick="setTrailMode(this.value)">
-            <label for="type">Headline</label>
+            <label for="type">Text</label>
           </div>
 
           <div id="imageTrailSettings">
@@ -94,7 +95,7 @@
             </div>
   
             <div class="coupling1c">
-              <input type="checkbox" id="imageAnimate" name="imageAnimate" onclick="toggleImageAnimate()">
+              <input type="checkbox" checked="checked" id="imageAnimate" name="imageAnimate" onclick="toggleImageAnimate()">
               <label for="imageAnimate">Animate Intros</label>
             </div>
   
@@ -223,6 +224,7 @@
           <br><br>
           Browse the gallery and submit your creations.
         </p>
+      </div>
     </div>
   </div>
 

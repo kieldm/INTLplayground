@@ -15,10 +15,7 @@ var imageTicker = 0;
 var headTicker = 0;
 
 var pgImage = [];
-var pgImageHoldCount = 10;
-var jpgCount = 21;
-var pngCount = 8;
-var gifCount = 1;
+var pgImageHoldCount = 39;
 
 var trailPace = 3;
 
@@ -33,7 +30,7 @@ var overlapFactor = 0.6;
 var imageAvg = 100;
 var imageVar = imageAvg * 0.5;
 
-var imageAnimate = false;
+var imageAnimate = true;
 var imageBreak = false;
 var imageRandomize = false;
 
@@ -67,7 +64,7 @@ let recMessageOn = false;
 
 function preload(){
   for(var m = 0; m < pgImageHoldCount; m++){
-    pgImage[m] = loadImage("resources/imageTrail/" + m + ".png");
+    pgImage[m] = loadImage("resources/imageTrail/File " + m + ".jpg");
   }
   bkgdImage = loadImage("resources/glencoe.jpg");
   headFont = loadFont("resources/NHaasGroteskDSPro-65Md.otf");
@@ -183,7 +180,7 @@ function mousePressed(){
     mouseOn = false;
   }
 
-  if(mouseY > height-20){
+  if(mouseY > height-40){
     mouseOn = false;
   }
 
