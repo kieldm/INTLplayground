@@ -15,7 +15,7 @@ var imageTicker = 0;
 var headTicker = 0;
 
 var pgImage = [];
-var pgImageHoldCount = 39;
+var pgImageHoldCount = 40;
 
 var trailPace = 3;
 
@@ -42,7 +42,7 @@ var headlineBlock = true;
 var animDelay = 5;
 var holdDelay = 60;
 
-var stackMode = 0;
+var stackMode = 1;
 
 var processOn = false;
 var coreTicker = 0;
@@ -60,7 +60,6 @@ var frate = 30;
 var saveSize = 0;
 var widgetOn = true;
 let recMessageOn = false;
-// var canvas;
 
 function preload(){
   for(var m = 0; m < pgImageHoldCount; m++){
