@@ -175,7 +175,7 @@ function mousePressed(){
   // processOn = true;
   var mouseOn = true;
 
-  if(mouseX < 210 - (windowWidth - width)/2 && mouseY < 500 - (windowHeight - height)/2){
+  if(mouseX < 210 - (windowWidth - width)/2 && mouseY < 1000 - (windowHeight - height)/2){
     mouseOn = false;
   }
 
