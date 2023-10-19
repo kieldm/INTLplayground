@@ -439,3 +439,13 @@ input.fileInput {
 a {
   color:white;
 }
+
+div#p5_loading {
+  font-family: myHaasLit, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size:16px;
+  color:#00f;
+  top:50%;
+  left:50%;
+  transform:translate(50%,50%);
+}
