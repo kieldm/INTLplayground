@@ -61,12 +61,15 @@ var saveSize = 0;
 var widgetOn = true;
 let recMessageOn = false;
 
+let introAnim;
+
 function preload(){
   for(var m = 0; m < pgImageHoldCount; m++){
     pgImage[m] = loadImage("resources/imageTrail/File " + m + ".jpg");
   }
   bkgdImage = loadImage("resources/glencoe.jpg");
   headFont = loadFont("resources/NHaasGroteskDSPro-65Md.otf");
+  introAnim = loadImage("resources/clickanddrag2.gif");
 }
 
 function setup(){
@@ -85,6 +88,10 @@ function setup(){
 
 function draw(){
   background(bkgdColor);
+
+  if(frameCount < 70){
+    image(introAnim, width/2, height/2, introAnim.width/2, introAnim.height/2);
+  }
 
   if(imageBkgdOn){
     image(bkgdImage, width/2, height/2, width, height);

@@ -443,9 +443,10 @@ a {
 div#p5_loading {
   font-family: myHaasLit, Helvetica, sans-serif;
   text-transform: uppercase;
+  text-align:center;
   font-size:16px;
   color:#00f;
   top:50%;
   left:50%;
-  transform:translate(50%,50%);
+  /* transform:translate(50%,50%); */
 }
